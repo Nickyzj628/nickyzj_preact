@@ -21,7 +21,7 @@ render(<App />, document.body);
 // 注册service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    // 只能注册js文件，ts需要手动编译为js
+    // 只能注册js，无法自动编译ts，待研究
     navigator.serviceWorker.register("/sw.js", {
       // 能控制的URL范围，默认就是/，即对所有页面生效
       scope: "/",
@@ -30,7 +30,7 @@ if ("serviceWorker" in navigator) {
         if (registration.installing) {
           console.log("正在安装service worker");
         } else if (registration.waiting) {
-          console.log("已安装service worker");
+          console.log("已安装service worker，待激活");
         } else if (registration.active) {
           console.log("正在激活/已激活service worker");
         }
